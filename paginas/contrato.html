@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Clinica México">
+		<meta name="author" content="">
+		<link href="../estilos/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<link href="../estilos/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+		<link href="../estilos/menu_izquierdo.css" rel="stylesheet" type="text/css">
+		<link href="../estilos/iconos/fonts.css" rel="stylesheet" type="text/css">
+		<link href="../estilos/extras.css" rel="stylesheet" type="text/css">
+		<link rel="shortcut icon" type="image/x-icon" href="../imagenes/icono.ico">
+		<title>Contrato</title>
+	</head>
+
+	<body>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+	      <div class="container-fluid">
+	        <div class="navbar-header">
+	          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex7-collapse">
+	            <span class="sr-only">Toggle navigation</span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	          </button>
+	          <div class="col-xs-9 col-ex-6">
+	           <a class="navbar-brand"><img src="../imagenes/LogoM.png" alt="logo" class="img-responsive"></a>
+	          </div>
+	        </div>
+	        <div class="collapse navbar-collapse navbar-ex7-collapse">
+	          <ul class="nav navbar-nav visible-xs" >
+	          	<li><a href="menu.html">Inicio <span class="icon icon-home2"></span></a></li>
+				<li class="lUno"><a href="cuentahabiente.html">Cuentahabientes</a></li>
+				<li class="active"><a href="contrato.html">Contrato</a></li>
+			    <li class="lTres"><a href="pacientes.html">Pacientes</a></li>
+			    <li class="lCuatro"><a href="cita.html">Citas</a></li>
+				<li class="lCuatro"><a href="pacientepaquete.html">Paquetes Comprados</a></li>				
+			    <li class="lTres"><a href="doctor.html">Doctores</a></li>
+			    <li class="lDos"><a href="paquete.html">Paquetes</a></li>	            
+				<li class="lUno"><a href="medicamentos.html">Medicamentos</a></li>
+			    <li class="lSeis"><a href="membresias.html">Membresias</a></li>
+			    <li><a href="javascript: cerrarSesion();">Salir <span class="icon icon-switch"></span></a></li>
+	          </ul>
+	        </div><!--/.nav-collapse -->
+	   	 </div>
+		</div>
+        
+        <div class="container-fluid sr-only">
+			<ul id="tabsMenu" class="nav nav-tabs">
+				<li><a href="#divTabListarContrato" data-toggle="tab">Listado</a></li>
+				<li><a href="#divTabFormularioContrato" data-toggle="tab">Formulario</a></li>
+				<li><a href="#divTabBorrarContrato" data-toggle="tab">Borrar</a></li>
+				<li><a href="#divTabBuscarContrato" data-toggle="tab">Buscar</a></li>
+				</ul>
+        </div>
+        
+		<div class="container-fluid">
+			<div class="row">
+				
+				<div class="col-sm-3 col-md-2 sidebar">
+					<ul class="nav nav-sidebar">
+						<li><a href="menu.html">Inicio <span class="icon icon-home2"></span></a></li>
+						<li class="lUno"><a href="cuentahabiente.html">Cuentahabientes</a></li>
+						<li class="active"><a href="contrato.html">Contrato</a></li>
+			            <li class="lTres"><a href="pacientes.html">Pacientes</a></li>
+			          	<li class="lCuatro"><a href="cita.html">Citas</a></li>
+						<li class="lCuatro"><a href="pacientepaquete.html">Paquetes Comprados</a></li>				
+			          	<li class="lTres"><a href="doctor.html">Doctores</a></li>
+			            <li class="lDos"><a href="paquete.html">Paquetes</a></li>	            
+						<li class="lUno"><a href="medicamentos.html">Medicamentos</a></li>
+			            <li class="lSeis"><a href="membresias.html">Membresias</a></li>
+			            <li><a href="javascript: cerrarSesion();">Salir <span class="icon icon-switch"></span></a></li>
+					</ul>
+				</div>
+				
+				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+					<p id="dato" class="nombre">Nombre</p>
+					<div id="divTabsPrincipal" class="tab-content">
+						<div id="divTabListarContrato" class="tab-pane fade in active">
+							<h1>Contratos</h1>
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>&nbsp;</th>
+										<th>Contrato</th>
+										<th>Cuentahabiente</th>
+										<th>Membresia</th>
+										<th>Fecha inicio</th>
+										<th>Fecha fin</th>
+									</tr>
+								</thead>
+								<tbody id="tbodyContrato">
+									<tr>
+										<td>
+											<button id="buttonEditar" type="button" onclick="javascript: editarContrato();" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-pencil"></span></button>
+											<button id="buttonBorrar" type="button" onclick="javascript: borrarContrato();" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+										</td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+								</tbody>
+							</table>
+							<p>&nbsp;</p>
+							<button id="buttonAgregar" type="button" onclick="javascript: agregarContrato();" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span>&nbsp;Agrega Contrato</button>
+							<button id="buttonReporte" type="button" onclick="javascript: crearPDF();" class="btn btn-info"><span class="glyphicon icon-file-pdf"></span>&nbsp;Crea PDF</button>
+							<button id="buttonBuscar" type="button" onclick="javascript: mostrarBusqueda();" class="btn btn-info"><span class="glyphicon glyphicon-search"></span>&nbsp;Busqueda</button>
+							<button id="buttonListarTodos" type="button" onclick="javascript: listarContrato();" class="btn btn-info"><span class="glyphicon glyphicon-list"></span>&nbsp;Listar Todos</button>
+						</div>
+						
+						<div id="divTabFormularioContrato" class="tab-pane fade in ">
+							<h1 id="h1TituloFormulario">Formulario Contrato</h1>
+							<form id="formContrato" method="post">
+								<div class="form-group">
+									<label for="idContrato">ID</label>
+									<input id="idContrato" type="text" class="form-control" maxlength="10" placeholder="" autocomplete="off" disabled />
+								</div>
+								<div class="form-group">
+									<label for="cuentahabiente">Cuentahabiente</label>
+									<select name="idCuenta" id="idCuenta" class="form-control">
+										<option value="x">Cargando Cuentahabientes...</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="membresia">Membresía</label>
+									<select name="idMembresia" id="idMembresia" class="form-control">
+										<option value="x">Cargando Membresias...</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="fechaInicio">Fecha Inicio</label>
+									<input id="fechaInicio" type="date" class="form-control"  />
+								</div>
+								<div class="form-group">
+									<label for="fechaFin">Fecha Fin</label>
+									<input id="fechaFin" type="date" class="form-control"  />
+								</div>
+
+
+								<button id="buttonListar" type="button" onclick="javascript: mostrarListado();" class="btn btn-info"><span class="glyphicon glyphicon-chevron-left"></span>Listado</button>
+								<button id="buttonValidar" type="button" onclick="javascript: guardarContrato();" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span>Guardar</button>
+							</form>
+						</div>
+						
+						<div id="divTabBorrarContrato" class="tab-pane fade in">
+							<h1>Eliminación de Contrato</h1>
+							<p id="pDatosContrato">Contrato en cuestion</p>
+							<p class="text-danger">El borrado del Contrato no se puede deshacer</p>
+							<p class="text-danger">¿Aun desea borrar el Contrato?</p>
+							<button id="buttonNoBorrar" type="button" onclick="javascript: mostrarListado();" class="btn btn-info"><span class="glyphicon glyphicon-chevron-left"></span>No</button>
+							<button id="buttonSiBorrar" type="button" onclick="javascript: borrarContrato();" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>Si</button>	
+						</div>
+						
+						<div id="divTabBuscarContrato" class="tab-pane fade in">
+							<h1>Busqueda de Contrato</h1>
+							<form id="formContratoBusqueda" method="post">
+								<div class="form-group">
+									<label for="selectColumna">Buscar por columna:</label><br />
+									<select id="selectColumna" name="selectColumna">
+										<option value="0">Todas las columnas</option>
+										<option value="1">ID CONTRATO</option>
+										<option value="2">ID CUENTAHABIENTE</option>
+										<option value="3">ID MEMBRESIA</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="inputCriterio">Criterio de busqueda</label>
+									<input id="inputCriterio" type="text" class="form-control" maxlength="100" placeholder="Criterio de busqueda" autocomplete="on" />
+								</div>
+								<button id="buttonCancelarBusqueda" type="button" onclick="javascript: mostrarListado();" class="btn btn-info"><span class="glyphicon glyphicon-chevron-left"></span>Cancelar</button>
+								<button id="buttonBuscar" type="button" onclick="javascript: buscarContrato();" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>Buscar</button>	
+							</form>
+						</div>
+					</div>
+					<footer>
+						<br />
+						<hr />
+						<p class="text-center">México 2014<sup>©</sup> Clinica México</p>
+					</footer>
+					
+				</div>
+			</div>
+		</div>
+		<div id="modalAvisos" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+             <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Aviso</h4>
+					</div>
+					<div id="divAvisos" class="modal-body">
+						<p>Mensaje del Aviso...</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+					</div>
+					
+                </div>
+            </div>
+        </div>
+		<script src="../js/libs/jquery-2.1.1.min.js" type="text/javascript"></script>
+		<script src="../js/libs/bootstrap.min.js" type="text/javascript"></script>
+		<script type="text/javascript" src="../js/acceso.js"></script>
+		<script type="text/javascript" src="../js/contrato.js"></script>
+		<script type="text/javascript">$(document).ready( listarContrato() );</script>	
+		<script type="text/javascript">$(document).ready( datos(0) );</script>	
+	</body>
+</html>

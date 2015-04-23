@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Clinica México">
+		<meta name="author" content="">
+		<link href="../estilos/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<link href="../estilos/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+		<link href="../estilos/menu_izquierdo.css" rel="stylesheet" type="text/css">
+		<link href="../estilos/extras.css" rel="stylesheet" type="text/css">
+		<link href="../estilos/iconos/fonts.css" rel="stylesheet" type="text/css">
+		<link rel="shortcut icon" type="image/x-icon" href="../imagenes/icono.ico">
+		<title>Expedientes</title>
+	</head>
+
+	<body>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+	      <div class="container-fluid">
+	        <div class="navbar-header">
+	         <div class="col-xs-9 col-ex-6">
+	           <a class="navbar-brand"><img src="../imagenes/LogoM.png" alt="logo" class="img-responsive"></a>
+	          </div>
+	        </div>
+	        
+	   	 </div>
+		</div>
+        
+        <div class="container-fluid sr-only">
+			<ul id="tabsMenu" class="nav nav-tabs">
+				<li><a href="#divTabListarExpediente" data-toggle="tab">Listado</a></li>
+				<li><a href="#divTabFormularioExpediente" data-toggle="tab">Formulario</a></li>
+				<li><a href="#divTabBorrarExpediente" data-toggle="tab">Borrar</a></li>
+				<li><a href="#divTabBuscarExpediente" data-toggle="tab">Buscar</a></li>
+				</ul>
+        </div>
+        
+		<div class="container-fluid">			
+			<div class="row">			
+				
+				<div class="col-sm-11 col-sm-offset-1 col-md-12 col-md-offset-0 main">
+					<p id="dato" class="nombre">Nombre</p>
+					<div id="divTabsPrincipal" class="tab-content">
+						
+						<div id="divTabListarExpediente" class="tab-pane fade in">
+
+				
+							<h1>Expedientes</h1>
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>&nbsp;</th>
+										<th>ID</th>
+										<th>Cita</th>
+										<th>Paciente</th>
+										<th>Doctor</th>
+										<th>Diagnostico</th>
+										<th>Fecha</th>
+									</tr>
+								</thead>
+								<tbody id="tbodyExpediente">
+									<tr>
+										<td>
+											<button id="buttonEditar" type="button" onclick="javascript: editarExpediente();" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-pencil"></span></button>
+											<button id="buttonBorrar" type="button" onclick="javascript: borrarExpediente();" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+										</td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+								</tbody>
+							</table>
+							<p>&nbsp;</p>
+							<button id="buttonAgregar" type="button" onclick="javascript: agregarExpediente();" class="btn btn-success"><span class="glyphicon glyphicon-chevron-right"></span>&nbsp;Continuar consulta</button>
+							<button id="buttonReporte" type="button" onclick="javascript: crearPDF();" class="btn btn-primary"><span class="glyphicon icon-file-pdf"></span>&nbsp;Crea PDF</button>
+							<button id="buttonBuscar" type="button" onclick="javascript: mostrarBusqueda();" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>&nbsp;Busqueda</button>
+							<button id="buttonListarTodos" type="button" onclick="javascript: listarExpediente();" class="btn btn-info"><span class="glyphicon glyphicon-list"></span>&nbsp;Listar Todos</button>
+						</div>
+						
+						<div id="divTabFormularioExpediente" class="tab-pane fade in active">
+							<h1 id="h1TituloFormulario">Consulta</h1>
+							<form id="formExpediente" method="post">
+								<div class="form-group">
+									<label for="ex">Expediente</label>
+									<input id="idExpe" type="text" class="form-control" maxlength="250" placeholder="" autocomplete="off" disabled />
+								</div>
+								<div class="form-group">
+									<label for="cita">Cita</label>
+									<select name="idCita" id="idCita" class="form-control">
+										<option value="x">Cargando Citas...</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="diagnostico" placeholder="Escriba el diagnostico">Diagnostico</label>
+									<textarea  id="diagnostico"  class="form-control" maxlength="250" placeholder="Diagnostico"></textarea>
+									
+								</div>
+								<div class="form-group">
+									<label for="receta">Receta</label>
+									<textarea  id="receta" class="form-control" maxlength="250" placeholder="Receta"></textarea>
+								</div>
+								<div class="form-group">
+									<label for="indicaciones">Indicaciones</label>
+									<textarea  id="indicaciones"  class="form-control" maxlength="250" placeholder="Indicaciones"></textarea>
+								</div>
+
+								<button id="buttonListar" type="button" onclick="javascript: mostrarListado();" class="btn btn-success"><span class="glyphicon glyphicon-chevron-left"></span>Revisar Expedientes</button>
+								<button id="buttonValidar" type="button" onclick="javascript: guardarExpediente();" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span>Guardar Consulta</button>
+								<button id="buttonValidar" type="button" onclick="javascript: cerrarSesion();" class="btn btn-danger"><span class="icon icon-switch"></span>Cerrar Sesión</button>
+							</form>
+						</div>
+						
+						<div id="divTabBorrarExpediente" class="tab-pane fade in">
+							<h1>Eliminacion de Expediente</h1>
+							<p id="pExpediente">Expediente en cuestion</p>
+							<p class="text-danger">El borrado del Expediente no se puede deshacer</p>
+							<p class="text-danger">¿Aun desea borrar el Expediente?</p>
+							<button id="buttonNoBorrar" type="button" onclick="javascript: mostrarListado();" class="btn btn-info"><span class="glyphicon glyphicon-chevron-left"></span>No</button>
+							<button id="buttonSiBorrar" type="button" onclick="javascript: borrarExpediente();" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>Si</button>	
+						</div>
+						
+						<div id="divTabBuscarExpediente" class="tab-pane fade in">
+							<h1>Busqueda de Expedientes</h1>
+							<form id="formExpedienteBusqueda" method="post">
+								<div class="form-group">
+									<label for="selectColumna">Buscar por columna:</label><br />
+									<select id="selectColumna" name="selectColumna" class="form-control formChico">
+										<option value="0">Todas las columnas</option>
+										<option value="1">Expediente</option>
+										<option value="2">Id Cita</option>
+										<option value="3">Paciente</option>
+										<option value="4">Fecha</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="inputCriterio">Criterio de busqueda</label>
+									<input id="inputCriterio" type="text" class="form-control" maxlength="100" placeholder="Criterio de busqueda" autocomplete="on" />
+								</div>
+								<button id="buttonCancelarBusqueda" type="button" onclick="javascript: mostrarListado();" class="btn btn-info"><span class="glyphicon glyphicon-chevron-left"></span>Cancelar</button>
+								<button id="buttonBuscar" type="button" onclick="javascript: buscarExpediente();" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>Buscar</button>	
+							</form>
+						</div>
+					</div>
+					<footer>
+						<br />
+						<hr />
+						<p class="text-center">México 2014<sup>©</sup> Clinica México</p>
+					</footer>
+					
+				</div>
+			</div>
+		</div>
+		<div id="modalAvisos" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+             <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Aviso</h4>
+					</div>
+					<div id="divAvisos" class="modal-body">
+						<p>Mensaje del Aviso...</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+					</div>
+					
+                </div>
+            </div>
+        </div>
+        <div id="modalAvisos2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+             <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header cabeza">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Información</h4>
+					</div>
+					<div id="divAvisos2" class="modal-body">
+						<p>Mensaje del Aviso...</p>
+					</div>
+					<div class="modal-footer pie">
+						<button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
+					</div>
+					
+                </div>
+            </div>
+        </div>
+		<script src="../js/libs/jquery-2.1.1.min.js" type="text/javascript"></script>
+		<script src="../js/libs/bootstrap.min.js" type="text/javascript"></script>
+		<script type="text/javascript" src="../js/acceso.js"></script>
+		<script type="text/javascript" src="../js/expediente.js"></script>
+
+		
+		<script type="text/javascript">$(document).ready( listarExpediente() );</script>		
+		<script type="text/javascript">$(document).ready( agregarExpediente() );</script>
+		<script type="text/javascript">$(document).ready( datos(1) );</script>
+	</body>
+</html>

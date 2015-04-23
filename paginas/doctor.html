@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Clinica México">
+		<meta name="author" content="">
+		<link href="../estilos/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<link href="../estilos/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+		<link href="../estilos/menu_izquierdo.css" rel="stylesheet" type="text/css">
+		<link href="../estilos/iconos/fonts.css" rel="stylesheet" type="text/css">
+		<link href="../estilos/extras.css" rel="stylesheet" type="text/css">
+		<link rel="shortcut icon" type="image/x-icon" href="../imagenes/icono.ico">
+		<title>Doctor</title>
+	</head>
+
+	<body>
+		<div class="navbar navbar-inverse navbar-fixed">
+	      <div class="container-fluid">
+	        <div class="navbar-header">
+	          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex7-collapse">
+	            <span class="sr-only">Toggle navigation</span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	          </button>
+	          <div class="col-xs-9 col-ex-6">
+	           <a class="navbar-brand"><img src="../imagenes/LogoM.png" alt="logo" class="img-responsive"></a>
+	          </div>
+	        </div>
+	        <div class="collapse navbar-collapse navbar-ex7-collapse">
+	          <ul class="nav navbar-nav visible-xs" >
+	          	<li><a href="menu.html">Inicio <span class="icon icon-home2"></span></a></li>
+	          	<li class="lUno"><a href="cuentahabiente.html">Cuentahabientes</a></li>
+				<li class="lDos"><a href="contrato.html">Contrato</a></li>
+			    <li class="lTres"><a href="pacientes.html">Pacientes</a></li>
+			    <li class="lCuatro"><a href="cita.html">Citas</a></li>
+				<li class="lCuatro"><a href="pacientepaquete.html">Paquetes Comprados</a></li>				
+			    <li class="active"><a href="doctor.html">Doctores</a></li>
+			    <li class="lDos"><a href="paquete.html">Paquetes</a></li>	            
+				<li class="lUno"><a href="medicamentos.html">Medicamentos</a></li>
+			    <li class="lSeis"><a href="membresias.html">Membresias</a></li>
+	            <li><a href="javascript: cerrarSesion();">Salir <span class="icon icon-switch"></span></a></li>
+	          </ul>
+	        </div><!--/.nav-collapse -->
+	   	 </div>
+		</div>
+        
+        <div class="container-fluid sr-only">
+			<ul id="tabsMenu" class="nav nav-tabs">
+				<li><a href="#divTabListarDoctor" data-toggle="tab">Listado</a></li>
+				<li><a href="#divTabFormularioDoctor" data-toggle="tab">Formulario</a></li>
+				<li><a href="#divTabBorrarDoctor" data-toggle="tab">Borrar</a></li>
+				<li><a href="#divTabBuscarDoctor" data-toggle="tab">Buscar</a></li>
+				</ul>
+        </div>
+        
+		<div class="container-fluid">
+			<div class="row">
+				
+				<div class="col-sm-3 col-md-2 sidebar">
+					<ul class="nav nav-sidebar">
+						<li><a href="menu.html">Inicio <span class="icon icon-home2"></span></a></li>
+			          	<li class="lUno"><a href="cuentahabiente.html">Cuentahabientes</a></li>
+						<li class="lDos"><a href="contrato.html">Contrato</a></li>
+					    <li class="lTres"><a href="pacientes.html">Pacientes</a></li>
+					    <li class="lCuatro"><a href="cita.html">Citas</a></li>
+						<li class="lCuatro"><a href="pacientepaquete.html">Paquetes Comprados</a></li>				
+					    <li class="active"><a href="doctor.html">Doctores</a></li>
+					    <li class="lDos"><a href="paquete.html">Paquetes</a></li>	            
+						<li class="lUno"><a href="medicamentos.html">Medicamentos</a></li>
+					    <li class="lSeis"><a href="membresias.html">Membresias</a></li>
+			            <li><a href="javascript: cerrarSesion();">Salir <span class="icon icon-switch"></span></a></li>
+					</ul>
+				</div>
+				
+				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+					<p id="dato" class="nombre">Nombre</p>
+					<div id="divTabsPrincipal" class="tab-content">
+						
+						<div id="divTabListarDoctor" class="tab-pane fade in active">
+							<h1>Catalogo Doctor</h1>
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>&nbsp;</th>
+										<th>ID</th>
+										<th>Curp</th>
+										<th>Nombre</th>
+										<th>Apellido Paterno</th>
+										<th>Apellido Materno</th>
+										<th>Sexo</th>
+										<th>Correo Electronico</th>
+										<th>Teléfono</th>
+										<th>Cédula</th>	
+									</tr>
+								</thead>
+								<tbody id="tbodyDoctor">
+									<tr>
+										<td>
+											<button id="buttonEditar" type="button" onclick="javascript: editarDoctor();" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-pencil"></span></button>
+											<button id="buttonBorrar" type="button" onclick="javascript: borrarDoctor();" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+										</td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+								</tbody>
+							</table>
+							<p>&nbsp;</p>
+							<button id="buttonAgregar" type="button" onclick="javascript: agregarDoctor();" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span>&nbsp;Agrega Doctor</button>
+							<button id="buttonReporte" type="button" onclick="javascript: crearPDF();" class="btn btn-info"><span class="glyphicon icon-file-pdf"></span>&nbsp;Crea PDF</button>
+							<button id="buttonBuscar" type="button" onclick="javascript: mostrarBusqueda();" class="btn btn-info"><span class="glyphicon glyphicon-search"></span>&nbsp;Busqueda</button>
+							<button id="buttonListarTodos" type="button" onclick="javascript: listarDoctor();" class="btn btn-info"><span class="glyphicon glyphicon-list"></span>&nbsp;Listar Todos</button>
+						</div>
+						
+						<div id="divTabFormularioDoctor" class="tab-pane fade in ">
+							<h1 id="h1TituloFormulario">Formulario Doctor</h1>
+							<form id="formDoctor" method="post">
+								<div class="form-group">
+									<label for="idDoctor">ID</label>
+									<input id="idDoctor" type="text" class="form-control" maxlength="10" placeholder="" autocomplete="off" disabled />
+								</div>
+								<div class="form-group">
+									<label for="curp">Curp</label>
+									<input id="curp" type="text" class="form-control" maxlength="19" placeholder="Curp del Doctor" autocomplete="off" />
+								</div>
+								<div class="form-group">
+									<label for="nombre">Nombre</label>
+									<input id="nombre" type="text" class="form-control" maxlength="20" placeholder="Nombre del Doctor" autocomplete="off" />
+								</div>
+								<div class="form-group">
+									<label for="apellidoP">Apellido Paterno</label>
+									<input  id="apellidoP" type="text" class="form-control" maxlength="20" placeholder="Apellido paterno" autocomplete="off" />
+								</div>
+								<div class="form-group">
+									<label for="apellidoM">Apellido Materno</label>
+									<input  id="apellidoM" type="text" class="form-control" maxlength="20" placeholder="Apellido materno" autocomplete="off" />
+								</div>
+								<div class="form-group">
+									<label for="sexo">Sexo</label>
+									<select id="selectSexo" name="selectSexo" class="form-control">
+										<option value="M">Masculino</option>
+										<option value="F">Femenino</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="eMail">Correo Electronico</label>
+									<input  id="eMail" type="email" class="form-control" maxlength="40" placeholder="Correo electronico" autocomplete="off" />
+								</div>
+								<div class="form-group">
+									<label for="cp">Codigo Postal</label>
+									<input  id="cp" type="number" class="form-control" maxlength="5" placeholder="Codigo Postal" autocomplete="off" />
+								</div>
+								<div class="form-group">
+									<label for="Estado">Estado</label>
+									<input  id="Estado" type="text" class="form-control" maxlength="20" placeholder="Estado" autocomplete="off" />
+								</div>
+								<div class="form-group">
+									<label for="Municipio">Municipio</label>
+									<input  id="Municipio" type="text" class="form-control" maxlength="20" placeholder="Municipio" autocomplete="off" />
+								</div>
+								<div class="form-group">
+									<label for="Calle">Calle</label>
+									<input  id="Calle" type="text" class="form-control" maxlength="20" placeholder="Calle" autocomplete="off" />
+								</div>
+								<div class="form-group">
+									<label for="telefono">Teléfono</label>
+									<input  id="telefono" type="text" class="form-control" maxlength="14" placeholder="Telefono" autocomplete="off" />
+								</div>
+								<div class="form-group">
+									<label for="cedula">Cédula</label>
+									<input  id="cedula" type="text" class="form-control" maxlength="14" placeholder="Telefono" autocomplete="off" />
+								</div>
+								<div class="form-group">
+									<label for="estatus">Estatus</label>
+									<input  id="estatus" type="text" class="form-control" maxlength="14" placeholder="Telefono" autocomplete="off" />
+								</div>
+								<button id="buttonListar" type="button" onclick="javascript: mostrarListado();" class="btn btn-info"><span class="glyphicon glyphicon-chevron-left"></span>Listado</button>
+								<button id="buttonValidar" type="button" onclick="javascript: guardarDoctor();" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span>Guardar</button>
+							</form>
+						</div>
+						
+						<div id="divTabBorrarDoctor" class="tab-pane fade in">
+							<h1>Eliminacion de Doctor</h1>
+							<p id="pDatosDoctor">Doctor en cuestion</p>
+							<p class="text-danger">El borrado de Doctor no se puede deshacer</p>
+							<p class="text-danger">¿Aun desea borrar el Doctor?</p>
+							<button id="buttonNoBorrar" type="button" onclick="javascript: mostrarListado();" class="btn btn-info"><span class="glyphicon glyphicon-chevron-left"></span>No</button>
+							<button id="buttonSiBorrar" type="button" onclick="javascript: borrarDoctor();" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>Si</button>	
+						</div>
+						
+						<div id="divTabBuscarDoctor" class="tab-pane fade in">
+							<h1>Busqueda de Doctor</h1>
+							<form id="formDoctorBusqueda" method="post">
+								<div class="form-group">
+									<label for="selectColumna">Buscar por columna:</label><br />
+									<select id="selectColumna" name="selectColumna">
+										<option value="0">Todas las columnas</option>
+										<option value="1">ID</option>
+										<option value="2">Curp</option>
+										<option value="3">Nombre</option>
+										<option value="4">Apellido Paterno</option>
+										<option value="5">Apellido Materno</option>
+										<option value="6">Sexo</option>
+										<option value="7">Estado Civil</option>
+										<option value="8">Correo Electronico</option>
+										<option value="9">Telefono</option>
+										<option value="10">Cédula</option>
+										<option value="11">Estatus</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="inputCriterio">Criterio de busqueda</label>
+									<input id="inputCriterio" type="text" class="form-control" maxlength="100" placeholder="Criterio de busqueda" autocomplete="on" />
+								</div>
+								<button id="buttonCancelarBusqueda" type="button" onclick="javascript: mostrarListado();" class="btn btn-info"><span class="glyphicon glyphicon-chevron-left"></span>Cancelar</button>
+								<button id="buttonBuscar" type="button" onclick="javascript: buscarDoctor();" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>Buscar</button>	
+							</form>
+						</div>
+					</div>
+					<footer>
+						<br />
+						<hr />
+						<p class="text-center">México 2014<sup>©</sup> Clinica México</p>
+					</footer>
+					
+				</div>
+			</div>
+		</div>
+		<div id="modalAvisos" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+             <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Aviso</h4>
+					</div>
+					<div id="divAvisos" class="modal-body">
+						<p>Mensaje del Aviso...</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+					</div>
+					
+                </div>
+            </div>
+        </div>
+        <div id="modalAvisos2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+             <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header cabeza">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Información</h4>
+					</div>
+					<div id="divAvisos2" class="modal-body">
+						<p>Mensaje del Aviso...</p>
+					</div>
+					<div class="modal-footer pie">
+						<button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
+					</div>
+					
+                </div>
+            </div>
+        </div>
+		<script src="../js/libs/jquery-2.1.1.min.js" type="text/javascript"></script>
+		<script src="../js/libs/bootstrap.min.js" type="text/javascript"></script>
+		<script type="text/javascript" src="../js/acceso.js"></script>
+		<script type="text/javascript" src="../js/doctor.js"></script>
+		<script type="text/javascript">$(document).ready( listarDoctor() );</script>
+		<script type="text/javascript">$(document).ready( datos(0) );</script>
+	</body>
+</html>

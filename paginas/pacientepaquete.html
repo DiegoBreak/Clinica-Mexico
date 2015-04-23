@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Clinica México">
+		<meta name="author" content="">
+		<link href="../estilos/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<link href="../estilos/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+		<link href="../estilos/menu_izquierdo.css" rel="stylesheet" type="text/css">
+		<link href="../estilos/iconos/fonts.css" rel="stylesheet" type="text/css">
+		<link href="../estilos/extras.css" rel="stylesheet" type="text/css">
+		<link rel="shortcut icon" type="image/x-icon" href="../imagenes/icono.ico">
+		<title>Paciente Paquetes</title>
+	</head>
+
+	<body>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+	      <div class="container-fluid">
+	        <div class="navbar-header">
+	          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex7-collapse">
+	            <span class="sr-only">Toggle navigation</span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	          </button>
+	          <div class="col-xs-9 col-ex-6">
+	           <a class="navbar-brand"><img src="../imagenes/LogoM.png" alt="logo" class="img-responsive"></a>
+	          </div>
+	        </div>
+	        <div class="collapse navbar-collapse navbar-ex7-collapse">
+	          <ul class="nav navbar-nav visible-xs" >
+	          	<li class="lUno"><a href="cuentahabiente.html">Cuentahabientes</a></li>
+				<li class="lDos"><a href="contrato.html">Contrato</a></li>
+			    <li class="lTres"><a href="pacientes.html">Pacientes</a></li>
+			    <li class="lCuatro"><a href="cita.html">Citas</a></li>
+				<li class="active"><a href="pacientepaquete.html">Paquetes Comprados</a></li>				
+			    <li class="lTres"><a href="doctor.html">Doctores</a></li>
+			    <li class="lDos"><a href="paquete.html">Paquetes</a></li>	            
+				<li class="lUno"><a href="medicamentos.html">Medicamentos</a></li>
+			    <li class="lSeis"><a href="membresias.html">Membresias</a></li>
+	            <li><a href="javascript: cerrarSesion();">Salir <span class="icon icon-switch"></span></a></li>
+	          </ul>
+	        </div><!--/.nav-collapse -->
+	   	 </div>
+		</div>
+        
+        <div class="container-fluid sr-only">
+			<ul id="tabsMenu" class="nav nav-tabs">
+				<li><a href="#divTabListarPacientes" data-toggle="tab">Listado</a></li>
+				<li><a href="#divTabFormularioPacientes" data-toggle="tab">Formulario</a></li>
+				<li><a href="#divTabBorrarPaciente" data-toggle="tab">Borrar</a></li>
+				<li><a href="#divTabBuscarPaciente" data-toggle="tab">Buscar</a></li>
+				</ul>
+        </div>
+        
+		<div class="container-fluid">
+			<div class="row">
+				
+				<div class="col-sm-3 col-md-2 sidebar">
+					<ul class="nav nav-sidebar">
+						<li><a href="menu.html">Inicio <span class="icon icon-home2"></span></a></li>
+			          	<li class="lUno"><a href="cuentahabiente.html">Cuentahabientes</a></li>
+						<li class="lDos"><a href="contrato.html">Contrato</a></li>
+					    <li class="lTres"><a href="pacientes.html">Pacientes</a></li>
+					    <li class="lCuatro"><a href="cita.html">Citas</a></li>
+						<li class="active"><a href="pacientepaquete.html">Paquetes Comprados</a></li>				
+					    <li class="lTres"><a href="doctor.html">Doctores</a></li>
+					    <li class="lDos"><a href="paquete.html">Paquetes</a></li>	            
+						<li class="lUno"><a href="medicamentos.html">Medicamentos</a></li>
+					    <li class="lSeis"><a href="membresias.html">Membresias</a></li>
+			            <li><a href="javascript: cerrarSesion();">Salir <span class="icon icon-switch"></span></a></li>
+					</ul>
+				</div>
+				
+				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+					<p id="dato" class="nombre">Nombre</p>
+					<div id="divTabsPrincipal" class="tab-content">
+						<div id="divTabListarPacientes" class="tab-pane fade in active">
+							<h1>Paqetes Comprados</h1>
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>&nbsp;</th>
+										<th>ID Compra</th>
+										<th>Paciente</th>
+										<th>Paquete</th>
+										<th>Fecha</th>
+										<th>Hora</th>
+									</tr>
+								</thead>
+								<tbody id="tbodyPacientes">
+									<tr>
+										<td>
+											<button id="buttonEditar" type="button" onclick="javascript: editarPaciente();" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-pencil"></span></button>
+											<button id="buttonBorrar" type="button" onclick="javascript: borrarPaciente();" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+										</td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+								</tbody>
+							</table>
+							<p>&nbsp;</p>
+							<button id="buttonAgregar" type="button" onclick="javascript: agregarPaciente();" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span>&nbsp;Realizar Compra </button>
+							<button id="buttonReporte" type="button" onclick="javascript: crearPDF();" class="btn btn-info"><span class="glyphicon icon-file-pdf"></span>&nbsp;Crea PDF</button>
+							<button id="buttonBuscar" type="button" onclick="javascript: mostrarBusqueda();" class="btn btn-info"><span class="glyphicon glyphicon-search"></span>&nbsp;Busqueda</button>
+							<button id="buttonListarTodos" type="button" onclick="javascript: listarPacientes();" class="btn btn-info"><span class="glyphicon glyphicon-list"></span>&nbsp;Listar Todos</button>
+						</div>
+						
+						<div id="divTabFormularioPacientes" class="tab-pane fade in ">
+							<h1 id="h1TituloFormulario">Formulario Pacientes Paquetes</h1>
+							<form id="formPacientes" method="post">
+								<div class="form-group">
+									<label for="idPaciente">ID</label>
+									<input id="idPaciente" type="text" class="form-control" maxlength="10" placeholder="" autocomplete="off" disabled />
+								</div>
+								<div class="form-group">
+									<label for="cuentahabiente">Paciente</label>
+									<select name="idCuenta" id="idCuenta" class="form-control">
+										<option value="x">Cargando Pacientes...</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="cuentahabiente">Paquete</label>
+									<select name="idPaquete" id="idPaquete" class="form-control">
+										<option value="x">Cargando Paquetes...</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="fecha">Fecha</label>
+									<input id="fecha" type="date" class="form-control"/>	
+								</div>
+								<div class="form-group">
+									<label for="hora">Hora (12 hrs.)</label>
+									<input id="hora" type="time" class="form-control"/>	
+								</div>
+
+								<button id="buttonListar" type="button" onclick="javascript: mostrarListado();" class="btn btn-info"><span class="glyphicon glyphicon-chevron-left"></span>Listado</button>
+								<button id="buttonValidar" type="button" onclick="javascript: guardarPaciente();" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span>Guardar</button>
+							</form>
+						</div>
+						
+						<div id="divTabBorrarPaciente" class="tab-pane fade in">
+							<h1>Eliminación de Compra de Paquete</h1>
+							<p id="pDatosPacientep">Compra en cuestion</p>
+							<p class="text-danger">El borrado de la compra no se puede deshacer</p>
+							<p class="text-danger">¿Aun desea borrar el Paciente?</p>
+							<button id="buttonNoBorrar" type="button" onclick="javascript: mostrarListado();" class="btn btn-info"><span class="glyphicon glyphicon-chevron-left"></span>No</button>
+							<button id="buttonSiBorrar" type="button" onclick="javascript: borrarPaciente();" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>Si</button>	
+						</div>
+						
+						<div id="divTabBuscarPaciente" class="tab-pane fade in">
+							<h1>Busqueda de Pacientes</h1>
+							<form id="formPacienteBusqueda" method="post">
+								<div class="form-group">
+									<label for="selectColumna">Buscar por columna:</label><br />
+									<select id="selectColumna" name="selectColumna">
+										<option value="0">Todas las columnas</option>
+										<option value="1">ID</option>
+										<option value="2">ID PACIENTE</option>
+										<option value="3">ID PAQUETE</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="inputCriterio">Criterio de busqueda</label>
+									<input id="inputCriterio" type="text" class="form-control" maxlength="100" placeholder="Criterio de busqueda" autocomplete="on" />
+								</div>
+								<button id="buttonCancelarBusqueda" type="button" onclick="javascript: mostrarListado();" class="btn btn-info"><span class="glyphicon glyphicon-chevron-left"></span>Cancelar</button>
+								<button id="buttonBuscar" type="button" onclick="javascript: buscarPaciente();" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>Buscar</button>	
+							</form>
+						</div>
+					</div>
+					<footer>
+						<br />
+						<hr />
+						<p class="text-center">México 2014<sup>©</sup> Clinica México</p>
+					</footer>
+					
+				</div>
+			</div>
+		</div>
+		<div id="modalAvisos" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+             <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Aviso</h4>
+					</div>
+					<div id="divAvisos" class="modal-body">
+						<p>Mensaje del Aviso...</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+					</div>
+					
+                </div>
+            </div>
+        </div>
+        <div id="modalAvisos2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+             <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header cabeza">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Información</h4>
+					</div>
+					<div id="divAvisos2" class="modal-body">
+						<p>Mensaje del Aviso...</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
+					</div>
+					
+                </div>
+            </div>
+        </div>
+		<script src="../js/libs/jquery-2.1.1.min.js" type="text/javascript"></script>
+		<script src="../js/libs/bootstrap.min.js" type="text/javascript"></script>
+		<script type="text/javascript" src="../js/acceso.js"></script>
+		<script type="text/javascript" src="../js/PacientePaquete.js"></script>
+		<script type="text/javascript">$(document).ready( listarPacientes() );</script>	
+		<script type="text/javascript">$(document).ready( datos(0) );</script>	
+	</body>
+</html>
